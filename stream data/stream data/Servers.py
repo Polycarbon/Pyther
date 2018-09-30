@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger('Server')
 
 
+    
 class Server(object):
     def __init__(self, server_address,queue):
         self.connection(server_address)
@@ -54,6 +55,7 @@ class Server(object):
                 data = self.recvall(self.connection, msglen)
                 log.debug("Receive complete")
                 data_arr = data.decode().split(",")
+                data_arr = list(map(float, data_arr))
                 self.queue.put(data_arr)
 
     def close(self):
